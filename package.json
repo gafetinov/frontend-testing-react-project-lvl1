@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "[![Actions Status](https://github.com/gafetinov/frontend-testing-react-project-lvl1/workflows/hexlet-check/badge.svg)](https://github.com/gafetinov/frontend-testing-react-project-lvl1/actions)",
   "main": "src/index.js",
+  "bin": {
+    "load-page": "bin/load-page.js"
+  },
   "scripts": {
     "test": "jest"
   },
@@ -37,6 +40,7 @@
     "nock": "^13.0.11"
   },
   "dependencies": {
-    "axios": "^0.21.1"
+    "axios": "^0.21.1",
+    "commander": "^5.1.0"
   }
 }
