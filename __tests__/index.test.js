@@ -14,12 +14,13 @@ describe('page-loader', () => {
     });
   });
 
-  test('should load page', () => {
-    const pageContent = fs.readFileSync(`${__dirname}/../__fixtures__/page.html`);
-    nock('https://www.google.com').get('/').reply(200, pageContent);
-    const resultPath = loadPage('https://www.google.com');
-    expect(resultPath).toBe(`${dirToSave}/www-google-com`);
-    const resultContent = fs.readFileSync(resultPath);
+  test('should load page', async () => {
+    const pageHref = 'https://www.google.com';
+    const pageContent = fs.readFileSync(`${__dirname}/../__fixtures__/page.html`, 'utf-8');
+    nock(pageHref).get('/').reply(200, pageContent);
+    const resultPath = await loadPage(pageHref, dirToSave);
+    expect(resultPath).toBe(`${dirToSave}/www-google-com.html`);
+    const resultContent = fs.readFileSync(resultPath, 'utf-8');
     expect(resultContent).toBe(pageContent);
   });
 });
