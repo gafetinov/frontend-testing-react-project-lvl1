@@ -7,8 +7,8 @@ export default () => {
     .description('Load content of the web page')
     .arguments('<href>')
     .option('--output [dirPath]', 'dir to save', undefined)
-    .action((href, options) => {
-      console.log(loadPage(href, options.output));
+    .action(async (href, options) => {
+      console.log(await loadPage(href, options.output));
     })
     .parse(process.argv);
 };

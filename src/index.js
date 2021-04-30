@@ -1,9 +1,10 @@
 import fs from 'fs';
+import path from 'path';
 import axios from 'axios';
 
 const getPageFilePath = (href, dirToSave) => {
   const fileName = href.replace(/^https?:\/\//, '').replace(/\W/g, '-');
-  return `${dirToSave}/${fileName}.html`;
+  return `${path.resolve(dirToSave)}/${fileName}.html`;
 };
 
 export default async (href, dirToSave = '.') => {
