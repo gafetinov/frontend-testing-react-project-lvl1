@@ -15,6 +15,16 @@ describe('page-loader', () => {
     });
   });
 
+  test('simple test', async () => {
+    const pageHref = 'https://www.example.com';
+    const pageContent = '<html lang="ru"><body><h1>Hello world!</h1></body></html>';
+    nock(pageHref).get('/').reply(200, pageContent);
+    const resultPath = await loadPage(pageHref, dirToSave);
+    expect(resultPath).toBe(`${dirToSave}/www-example-com.html`);
+    const loadedPageContent = fs.readFileSync(resultPath, 'utf-8');
+    expect(loadedPageContent).toBe(pageContent);
+  });
+
   test('should correct load page', async () => {
     const pageHref = 'https://www.example.com';
     const pngPath = '/images/picture.png';
