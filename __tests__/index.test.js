@@ -8,7 +8,8 @@ describe('page-loader', () => {
   let dirToSave;
 
   beforeEach((done) => {
-    fs.mkdtemp(path.join(os.tmpdir(), 'page-loader-'), (err, dir) => {
+    nock.cleanAll();
+    fs.mkdtemp(path.join(os.tmpdir(), 'page-loader'), (err, dir) => {
       dirToSave = dir;
       done();
     });
